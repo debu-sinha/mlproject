@@ -130,5 +130,10 @@ dmypy.json
 
 #databricks specific files for local development
 .databricks
-.dfs_utils.py
 typings/
+
+# VSCode specific files for local development
+.vscode/
+
+#ignoring logs
+logs/

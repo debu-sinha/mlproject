@@ -1,1 +1,1 @@
-## An end-end ML project developed using IDE.
+## An end-end ML project developed using IDE
