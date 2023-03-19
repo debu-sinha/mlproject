@@ -3,6 +3,12 @@
 # MAGIC ## Student Performance Indicator
 
 # COMMAND ----------
+# MAGIC %pip install -r ../requirements.txt 
+
+
+
+
+# COMMAND ----------
 
 # MAGIC %md
 # MAGIC #### Life cycle of Machine learning Project
@@ -303,11 +309,11 @@ plt.show()
 
 plt.subplots(1,3,figsize=(25,6))
 plt.subplot(141)
-ax =sns.histplot(data=df,x='average',kde=True,hue='parental level of education')
+ax =sns.histplot(data=df,x='average',kde=True,hue='parental_level_of_education')
 plt.subplot(142)
-ax =sns.histplot(data=df[df.gender=='male'],x='average',kde=True,hue='parental level of education')
+ax =sns.histplot(data=df[df.gender=='male'],x='average',kde=True,hue='parental_level_of_education')
 plt.subplot(143)
-ax =sns.histplot(data=df[df.gender=='female'],x='average',kde=True,hue='parental level of education')
+ax =sns.histplot(data=df[df.gender=='female'],x='average',kde=True,hue='parental_level_of_education')
 plt.show()
 
 # COMMAND ----------
@@ -322,11 +328,11 @@ plt.show()
 
 plt.subplots(1,3,figsize=(25,6))
 plt.subplot(141)
-ax =sns.histplot(data=df,x='average',kde=True,hue='race/ethnicity')
+ax =sns.histplot(data=df,x='average',kde=True,hue='race_ethnicity')
 plt.subplot(142)
-ax =sns.histplot(data=df[df.gender=='female'],x='average',kde=True,hue='race/ethnicity')
+ax =sns.histplot(data=df[df.gender=='female'],x='average',kde=True,hue='race_ethnicity')
 plt.subplot(143)
-ax =sns.histplot(data=df[df.gender=='male'],x='average',kde=True,hue='race/ethnicity')
+ax =sns.histplot(data=df[df.gender=='male'],x='average',kde=True,hue='race_ethnicity')
 plt.show()
 
 # COMMAND ----------
@@ -347,13 +353,13 @@ plt.show()
 plt.figure(figsize=(18,8))
 plt.subplot(1, 4, 1)
 plt.title('MATH SCORES')
-sns.violinplot(y='math score',data=df,color='red',linewidth=3)
+sns.violinplot(y='math_score',data=df,color='red',linewidth=3)
 plt.subplot(1, 4, 2)
 plt.title('READING SCORES')
-sns.violinplot(y='reading score',data=df,color='green',linewidth=3)
+sns.violinplot(y='reading_score',data=df,color='green',linewidth=3)
 plt.subplot(1, 4, 3)
 plt.title('WRITING SCORES')
-sns.violinplot(y='writing score',data=df,color='blue',linewidth=3)
+sns.violinplot(y='writing_score',data=df,color='blue',linewidth=3)
 plt.show()
 
 # COMMAND ----------
@@ -384,7 +390,7 @@ plt.axis('off')
 
 
 plt.subplot(1, 5, 2)
-size = df['race/ethnicity'].value_counts()
+size = df['race_ethnicity'].value_counts()
 labels = 'Group C', 'Group D','Group B','Group E','Group A'
 color = ['red', 'green', 'blue', 'cyan','orange']
 
@@ -405,7 +411,7 @@ plt.axis('off')
 
 
 plt.subplot(1, 5, 4)
-size = df['test preparation course'].value_counts()
+size = df['test_preparation_course'].value_counts()
 labels = 'None', 'Completed'
 color = ['red','green']
 
@@ -415,12 +421,12 @@ plt.axis('off')
 
 
 plt.subplot(1, 5, 5)
-size = df['parental level of education'].value_counts()
+size = df['parental_level_of_education'].value_counts()
 labels = 'Some College', "Associate's Degree",'High School','Some High School',"Bachelor's Degree","Master's Degree"
 color = ['red', 'green', 'blue', 'cyan','orange','grey']
 
 plt.pie(size, colors = color,labels = labels,autopct = '.%2f%%')
-plt.title('Parental Education', fontsize = 20)
+plt.title('Parental Education Level', fontsize = 20)
 plt.axis('off')
 
 
@@ -485,8 +491,8 @@ plt.figure(figsize=(10, 8))
 X = ['Total Average','Math Average']
 
 
-female_scores = [gender_group['average'][0], gender_group['math score'][0]]
-male_scores = [gender_group['average'][1], gender_group['math score'][1]]
+female_scores = [gender_group['average'][0], gender_group['math_score'][0]]
+male_scores = [gender_group['average'][1], gender_group['math_score'][1]]
 
 X_axis = np.arange(len(X))
   
@@ -521,11 +527,11 @@ plt.show()
 # COMMAND ----------
 
 f,ax=plt.subplots(1,2,figsize=(20,10))
-sns.countplot(x=df['race/ethnicity'],data=df,palette = 'bright',ax=ax[0],saturation=0.95)
+sns.countplot(x=df['race_ethnicity'],data=df,palette = 'bright',ax=ax[0],saturation=0.95)
 for container in ax[0].containers:
     ax[0].bar_label(container,color='black',size=20)
     
-plt.pie(x = df['race/ethnicity'].value_counts(),labels=df['race/ethnicity'].value_counts().index,explode=[0.1,0,0,0,0],autopct='%1.1f%%',shadow=True)
+plt.pie(x = df['race_ethnicity'].value_counts(),labels=df['race_ethnicity'].value_counts().index,explode=[0.1,0,0,0,0],autopct='%1.1f%%',shadow=True)
 plt.show()   
 
 # COMMAND ----------
@@ -542,21 +548,21 @@ plt.show()
 
 # COMMAND ----------
 
-Group_data2=df.groupby('race/ethnicity')
+Group_data2=df.groupby('race_ethnicity')
 f,ax=plt.subplots(1,3,figsize=(20,8))
-sns.barplot(x=Group_data2['math score'].mean().index,y=Group_data2['math score'].mean().values,palette = 'mako',ax=ax[0])
+sns.barplot(x=Group_data2['math_score'].mean().index,y=Group_data2['math_score'].mean().values,palette = 'mako',ax=ax[0])
 ax[0].set_title('Math score',color='#005ce6',size=20)
 
 for container in ax[0].containers:
     ax[0].bar_label(container,color='black',size=15)
 
-sns.barplot(x=Group_data2['reading score'].mean().index,y=Group_data2['reading score'].mean().values,palette = 'flare',ax=ax[1])
+sns.barplot(x=Group_data2['reading_score'].mean().index,y=Group_data2['reading_score'].mean().values,palette = 'flare',ax=ax[1])
 ax[1].set_title('Reading score',color='#005ce6',size=20)
 
 for container in ax[1].containers:
     ax[1].bar_label(container,color='black',size=15)
 
-sns.barplot(x=Group_data2['writing score'].mean().index,y=Group_data2['writing score'].mean().values,palette = 'coolwarm',ax=ax[2])
+sns.barplot(x=Group_data2['writing_score'].mean().index,y=Group_data2['writing_score'].mean().values,palette = 'coolwarm',ax=ax[2])
 ax[2].set_title('Writing score',color='#005ce6',size=20)
 
 for container in ax[2].containers:
@@ -586,7 +592,7 @@ for container in ax[2].containers:
 
 plt.rcParams['figure.figsize'] = (15, 9)
 plt.style.use('fivethirtyeight')
-sns.countplot(df['parental level of education'], palette = 'Blues')
+sns.countplot(df['parental_level_of_education'], palette = 'Blues')
 plt.title('Comparison of Parental Education', fontweight = 30, fontsize = 20)
 plt.xlabel('Degree')
 plt.ylabel('count')
@@ -605,7 +611,7 @@ plt.show()
 
 # COMMAND ----------
 
-df.groupby('parental level of education').agg('mean').plot(kind='barh',figsize=(10,10))
+df.groupby('parental_level_of_education').agg('mean').plot(kind='barh',figsize=(10,10))
 plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 plt.show()
 
@@ -651,12 +657,12 @@ plt.show()
 # COMMAND ----------
 
 f,ax=plt.subplots(1,2,figsize=(20,8))
-sns.countplot(x=df['parental level of education'],data=df,palette = 'bright',hue='test preparation course',saturation=0.95,ax=ax[0])
+sns.countplot(x=df['parental_level_of_education'],data=df,palette = 'bright',hue='test_preparation_course',saturation=0.95,ax=ax[0])
 ax[0].set_title('Students vs test preparation course ',color='black',size=25)
 for container in ax[0].containers:
     ax[0].bar_label(container,color='black',size=20)
     
-sns.countplot(x=df['parental level of education'],data=df,palette = 'bright',hue='lunch',saturation=0.95,ax=ax[1])
+sns.countplot(x=df['parental_level_of_education'],data=df,palette = 'bright',hue='lunch',saturation=0.95,ax=ax[1])
 for container in ax[1].containers:
     ax[1].bar_label(container,color='black',size=20)   
 
@@ -682,11 +688,11 @@ for container in ax[1].containers:
 
 plt.figure(figsize=(12,6))
 plt.subplot(2,2,1)
-sns.barplot (x=df['lunch'], y=df['math score'], hue=df['test preparation course'])
+sns.barplot (x=df['lunch'], y=df['math_score'], hue=df['test_preparation_course'])
 plt.subplot(2,2,2)
-sns.barplot (x=df['lunch'], y=df['reading score'], hue=df['test preparation course'])
+sns.barplot (x=df['lunch'], y=df['reading_score'], hue=df['test_preparation_course'])
 plt.subplot(2,2,3)
-sns.barplot (x=df['lunch'], y=df['writing score'], hue=df['test preparation course'])
+sns.barplot (x=df['lunch'], y=df['writing_score'], hue=df['test_preparation_course'])
 
 # COMMAND ----------
 
@@ -703,11 +709,11 @@ sns.barplot (x=df['lunch'], y=df['writing score'], hue=df['test preparation cour
 
 plt.subplots(1,4,figsize=(16,5))
 plt.subplot(141)
-sns.boxplot(df['math score'],color='skyblue')
+sns.boxplot(df['math_score'],color='skyblue')
 plt.subplot(142)
-sns.boxplot(df['reading score'],color='hotpink')
+sns.boxplot(df['reading_score'],color='hotpink')
 plt.subplot(143)
-sns.boxplot(df['writing score'],color='yellow')
+sns.boxplot(df['writing_score'],color='yellow')
 plt.subplot(144)
 sns.boxplot(df['average'],color='lightgreen')
 plt.show()

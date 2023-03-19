@@ -1,6 +1,8 @@
 # Databricks notebook source
 # MAGIC %md
 # MAGIC ## Model Training
+# COMMAND ----------
+# MAGIC %pip install -r ../requirements.txt 
 
 # COMMAND ----------
 
