@@ -33,27 +33,35 @@ class DataIngestion:
         logging.info("Initiating Data Ingestion")
         logging.info("wtf")
         try:
-            #this can be replaced with your lake house delta tables
+            # this can be replaced with your lake house delta tables
             df = pd.read_csv("notebooks/data/stud.csv")
             logging.info("reading raw data shape: {}".format(df.shape))
-            
-            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
+
+            os.makedirs(
+                os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True
+            )
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
-            
+
             logging.info("Data Splitting Started")
             train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
-            
-            train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
-            test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
+
+            train_set.to_csv(
+                self.ingestion_config.train_data_path, index=False, header=True
+            )
+            test_set.to_csv(
+                self.ingestion_config.test_data_path, index=False, header=True
+            )
             logging.info("Data ingestion completed")
-            
-            return(
+
+            return (
                 self.ingestion_config.train_data_path,
                 self.ingestion_config.test_data_path,
             )
         except Exception as e:
+            logging.error(f"Error occurred while initiating data ingestion: {e}")
             raise CustomException(e, sys)
+
 
 if __name__ == "__main__":
     data_ingestion = DataIngestion()
-    data_ingestion.initiate_data_ingestion()
+    training_path, test_path = data_ingestion.initiate_data_ingestion()
