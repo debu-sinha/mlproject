@@ -43,12 +43,13 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
         try:
             logging.info(f"Evaluating model: {model_name}")
             
+            parameter_grid = params[model_name] if model_name in params else {}
             # Evaluate the model on each of the hyperparameter values in the grid
-            grid = GridSearchCV(model, params[model_name], cv=5, n_jobs=-1, verbose=1)
+            grid = GridSearchCV(model, parameter_grid, cv=5, n_jobs=-1, verbose=1)
+            # Train the model on the best hyperparameter values
             grid.fit(X_train, y_train)
             # Select the best hyperparameter values based on the results of the evaluation
             best_hyperparameters = grid.best_params_
-            # Train the model on the best hyperparameter values
             # create a new model instance with the best hyperparameter values
             model =  grid.best_estimator_
             # Evaluate the model on the test set
