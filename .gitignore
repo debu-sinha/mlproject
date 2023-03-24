@@ -137,4 +137,7 @@ typings/
 
 #ignoring logs
 logs/
-artifacts/
+
+#ignoring tmp and catboost_info
+tmp/
+catboost_info/

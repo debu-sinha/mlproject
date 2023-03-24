@@ -49,7 +49,10 @@ class DataTransformation:
             cat_pipeline = Pipeline(
                 steps=[
                     ("imputer", SimpleImputer(strategy="most_frequent")),
-                    ("one_hot_encoder", OneHotEncoder()), # since the features have small number of categories, we can use one hot encoding
+                    (
+                        "one_hot_encoder",
+                        OneHotEncoder(),
+                    ),  # since the features have small number of categories, we can use one hot encoding
                     ("scaler", StandardScaler(with_mean=False)),
                 ]
             )
@@ -71,10 +74,10 @@ class DataTransformation:
             raise CustomException(e, sys)
 
     def initiate_data_transformation(self, train_path, test_path):
-        '''
+        """
         This function is responsible for data transformation
-        
-        '''
+
+        """
 
         try:
             train_df = pd.read_csv(train_path)
@@ -94,15 +97,20 @@ class DataTransformation:
             input_feature_test_df = test_df.drop(columns=[target_column_name], axis=1)
             target_feature_test_df = test_df[target_column_name]
 
-            logging.info("Applying preprocessing object on training dataframe and testing dataframe.")
+            logging.info(
+                "Applying preprocessing object on training dataframe and testing dataframe."
+            )
 
-            input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
-            #prevent data leakage
+            input_feature_train_arr = preprocessing_obj.fit_transform(
+                input_feature_train_df
+            )
+            # prevent data leakage
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
-            
-            
-            #concatenate the target feature to the input feature, create a new column
-            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
+
+            # concatenate the target feature to the input feature, create a new column
+            train_arr = np.c_[
+                input_feature_train_arr, np.array(target_feature_train_df)
+            ]
             test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
 
             logging.info(f"Saved preprocessing object.")
