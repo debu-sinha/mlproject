@@ -4,8 +4,7 @@ from src.logger import logging
 import sys
 
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-import numpy as np
+from sklearn.metrics import mean_squared_error, r2_score
  
 
 def save_object(file_path, obj):

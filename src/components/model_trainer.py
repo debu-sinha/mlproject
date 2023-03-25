@@ -29,7 +29,7 @@ class ModelTrainerConfig:
     """
 
     trained_model_file_path = os.path.join("artifacts", "model.pkl")
-    hyper_paramter_file_path = os.path.join("src/components/config", "hyperparameters.yml")
+    hyper_paramter_file_path = os.path.join("config", "hyperparameters.yml")
 
 
 class ModelTrainer:
