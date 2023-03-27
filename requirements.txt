@@ -6,4 +6,5 @@ xgboost
 catboost
 dill
 PyYAML
+Flask
 #-e .

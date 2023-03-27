@@ -7,7 +7,7 @@ import sys
 from src.logger import logging
 from src.exception import CustomException
 from src.components.data_transformation import DataTransformation
-from src.components.model_trainer import ModelTrainer 
+from src.components.model_trainer import ModelTrainer
 
 import pandas as pd
 
@@ -70,11 +70,14 @@ if __name__ == "__main__":
     logging.info("initializing Data Transformation object")
     data_transformation = DataTransformation()
     logging.info("initiating data transformation")
-    train_array, test_array, preprocessor_file_path = data_transformation.initiate_data_transformation(training_path, test_path)
+    (
+        train_array,
+        test_array,
+        preprocessor_file_path,
+    ) = data_transformation.initiate_data_transformation(training_path, test_path)
     logging.info("data transformation completed")
     logging.info("initializing Model Trainer object")
     mode_trainer = ModelTrainer()
     logging.info("initiating model training")
     mode_trainer.initiate_model_trainer(train_array, test_array)
     logging.info("model training completed")
-    
