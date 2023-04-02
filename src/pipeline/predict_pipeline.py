@@ -22,6 +22,9 @@ class PredictPipeline:
 
 
 class CustomData:
+    '''
+    Class to create CustomData object from input JSON data received from API
+    '''
     def __init__(
         self,
         gender: str,

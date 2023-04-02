@@ -7,4 +7,5 @@ catboost
 dill
 PyYAML
 Flask
-#-e .
+black
+-e .
