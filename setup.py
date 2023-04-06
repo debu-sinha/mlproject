@@ -25,6 +25,6 @@ setup(
     version="0.0.1",
     author="Debu Sinha",
     author_email="debusinha2009@gmail.com",
-    packages=find_packages(where=".", include=["src"]),
+    packages=find_packages(where=".", exclude=("tests",)),
     install_requires=get_requirements("requirements.txt"),
 )
